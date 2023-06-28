@@ -1,0 +1,5 @@
+FROM redis
+ARG REDIS_PASSWORD=SUPER_SECRET_PASSWORD
+EXPOSE 6379
+ENTRYPOINT ["redis-server","--appendonly"]
+CMD ["yes","--requirepass","SUPER_SECRET_PASSWORD"]
