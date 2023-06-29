@@ -13,5 +13,5 @@ RUN adduser \
 # Use the above created unprivileged user
 USER 10014
 EXPOSE 6379
-ENTRYPOINT ["redis-server","--appendonly"]
-CMD ["yes","--requirepass","SUPER_SECRET_PASSWORD"]
+ENTRYPOINT ["redis-server"]
+CMD ["--appendonly","yes","--requirepass","SUPER_SECRET_PASSWORD"]
