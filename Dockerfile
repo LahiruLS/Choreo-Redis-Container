@@ -14,4 +14,4 @@ RUN adduser \
 USER 10014
 EXPOSE 6379
 ENTRYPOINT ["redis-server"]
-CMD ["--appendonly","yes","--requirepass","SUPER_SECRET_PASSWORD"]
+#CMD ["--appendonly","yes","--requirepass","SUPER_SECRET_PASSWORD"]
