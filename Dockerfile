@@ -18,6 +18,6 @@ USER 10014
 EXPOSE 6379
 COPY ./script.sh /
 # RUN chmod +x /script.sh
-ENTRYPOINT ["/script.sh"]
+ENTRYPOINT ["./script.sh"]
 # ENTRYPOINT ["redis-server"]
 # CMD ["--appendonly","yes","--requirepass","SUPER_SECRET_PASSWORD"]
