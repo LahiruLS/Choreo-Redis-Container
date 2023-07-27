@@ -16,7 +16,7 @@ RUN \
 USER 10014
 # USER root
 EXPOSE 6379
-COPY ./script.sh /
+COPY /script.sh /
 # RUN chmod +x /script.sh
 ENTRYPOINT ["/script.sh"]
 # ENTRYPOINT ["redis-server"]
