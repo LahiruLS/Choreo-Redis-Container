@@ -1,0 +1,38 @@
+FROM amd64/ubuntu:22.04
+# FROM ballerina/ballerina:2201.6.0
+# ARG REDIS_PASSWORD=SUPER_SECRET_PASSWORD
+COPY ./script.sh /
+USER root
+# Create a user with a known UID/GID within range 10000-20000.
+# This is required by Choreo to run the container as a non-root user.
+RUN \
+    # adduser \
+    # --disabled-password \
+    # --gecos "" \
+    # --home "/nonexistent" \
+    # --shell "/sbin/nologin" \
+    # --no-create-home \
+    # --uid 10014 \
+    # "choreo" && \
+     chmod +x /script.sh  && \
+     apt-get update -y && \
+     apt-get upgrade -y && \
+     apt-get install redis-server -y && \
+     apt-get install wget -y && \
+     wget https://dist.ballerina.io/downloads/2201.7.0/ballerina-2201.7.0-swan-lake-linux-x64.deb && \ 
+     dpkg -i --force-architecture ballerina-2201.7.0-swan-lake-linux-x64.deb && \
+     mkdir -p /Redis-Wrapper-API/ && \
+     cd /Redis-Wrapper-API && bal run
+    #   && \
+    #  dpkg -i ballerina-2201.7.0-swan-lake-linux-x64.deb -y
+
+# Use the above created unprivileged user
+USER 10014
+EXPOSE 6379 9090
+# COPY ./script.sh /
+
+COPY /Redis-Wrapper-API/ /Redis-Wrapper-API
+# RUN chmod +x /script.sh
+ENTRYPOINT ["/script.sh"]
+# ENTRYPOINT ["redis-server"]
+# CMD ["--appendonly","yes","--requirepass","SUPER_SECRET_PASSWORD"]
