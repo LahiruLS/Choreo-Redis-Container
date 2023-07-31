@@ -1,8 +1,8 @@
 FROM redis
 
 COPY /script.sh /
-VOLUME ["/persistance_volume_1"]
-WORKDIR /persistance_volume_1
+VOLUME ["/persistance-volume-1"]
+WORKDIR /persistance-volume-1
 # Create a user with a known UID/GID within range 10000-20000.
 # This is required by Choreo to run the container as a non-root user.
 RUN \
